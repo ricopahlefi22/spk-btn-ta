@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Subkriteria;
 use App\Models\Kriteria;
+use Illuminate\Http\Request;
 
 
 class SubKriteriaController extends Controller
@@ -19,7 +20,16 @@ class SubKriteriaController extends Controller
 		return view('Admin.Sub-Kriteria.create', $data);
 	}
 
-	function store(Kriteria $kriteria){
+	function store(Request $request){
+		$request->validate(
+            [
+                'nama' => ($request->id) ? 'required' : 'required|unique:sub_kriteria',
+            ],
+            [
+            	'nama.required'=>'Harap isi bidang ini',
+            	'nama.unique'=>'Subkriteria sudah tersedia',
+            ]
+        );
 
 		$subkriteria = new SubKriteria;
 		$subkriteria-> kriteria_id = request('kriteria_id');

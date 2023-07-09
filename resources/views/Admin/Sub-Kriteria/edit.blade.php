@@ -9,7 +9,7 @@
                 <div class="card-header">
                   <h5 class="card-title mb-0">Edit Data Subkriteria</h5>
                 </div>
-                <form action="{{url('Admin/sub-kriteria')}}" method="post" enctype="multipart/form-data" style="margin-left: 20px; margin-right: 20px; margin-bottom: 20px">
+                <form action="{{url('Admin/sub-kriteria/edit', $subkriteria->id)}}" method="post" enctype="multipart/form-data" style="margin-left: 20px; margin-right: 20px; margin-bottom: 20px">
                   @csrf
                   @method("PUT")
                   <div class="container">

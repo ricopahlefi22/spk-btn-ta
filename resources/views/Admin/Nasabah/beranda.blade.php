@@ -16,9 +16,10 @@
                   <table class="table table-hover">
                     <thead>
                       <tr>
-                        <th>Kode</th>
-                        <th>Nama Kriteria</th>
-                        <th>Jenis</th>
+                        <th>No</th>
+                        <th>Nama Nasabah Pemohon</th>
+                        <th>Tanggal Lahir</th>
+                        <th>Alamat </th>
                         <th>Actions</th>
                       </tr>
                     </thead>
@@ -38,6 +39,9 @@
                               >
                               <a class="dropdown-item" href="javascript:void(0);"
                                 ><i class="bx bx-trash me-1"></i> Delete</a
+                              >
+                              <a class="dropdown-item" href="javascript:void(0);"
+                                ><i class="bx bx-trash me-1"></i> Info</a
                               >
                             </div>
                           </div>

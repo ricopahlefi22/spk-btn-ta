@@ -16,7 +16,12 @@
                         <input type="text" class="form-control" name="kriteria_id" value="{{$kriteria->id}}" id="exampleFormControlInput1" readonly hidden>
                       <div class="mt-3 col-md-6">
                         <label for="exampleFormControlInput1" class="form-label">Nama Subkriteria</label>
-                        <input type="text" class="form-control" name="nama" id="exampleFormControlInput1">
+                        <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" id="exampleFormControlInput1">
+                        @error('nama')
+                          <div class="invalid-feedback">
+                            {{ $message }}
+                          </div>
+                        @enderror
                       </div>
                       <div class="mt-3 col-md-6">
                         <label for="exampleFormControlInput1" class="form-label">Bobot</label>

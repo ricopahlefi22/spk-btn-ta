@@ -56,13 +56,14 @@ Route::group(['middleware'=>['auth']], function(){
 			Route::put('kriteria/edit/{kriteria}', [KriteriaController::class,'update']);
 			Route::delete('kriteria/{kriteria}', [KriteriaController::class, 'destroy']);
 			Route::get('perhitungan-kriteria', [KriteriaController::class, 'berandaperhitungan']);
+			Route::get('perhitungan-kriteria/create', [KriteriaController::class, 'tambahperhitungan']);
 			Route::post('perhitungan-kriteria', [KriteriaController::class, 'perhitungan']);
 
 			Route::get('sub-kriteria', [SubKriteriaController::class,'BerandaSubKriteria']);
 			Route::get('sub-kriteria/create/{kriteria}', [SubKriteriaController::class,'createSubKriteria']);
 			Route::post('sub-kriteria', [SubKriteriaController::class, 'store']);
 			Route::get('sub-kriteria/edit/{subkriteria}', [SubKriteriaController::class, 'edit']);
-			Route::post('sub-kriteria/edit/{subkriteria}', [SubKriteriaController::class, 'update']);
+			Route::put('sub-kriteria/edit/{subkriteria}', [SubKriteriaController::class, 'update']);
 			Route::delete('sub-kriteria/{subkriteria}', [SubkriteriaController::class, 'destroy']);
 			Route::get('perhitungan-sub-kriteria', [SubkriteriaController::class, 'perhitungan']);
 

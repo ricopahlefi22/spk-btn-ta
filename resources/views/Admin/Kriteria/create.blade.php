@@ -19,7 +19,12 @@
                       </div>
                       <div class="mt-3 col-md-4">
                         <label for="exampleFormControlInput1" class="form-label">Nama Kriteria</label>
-                        <input type="text" class="form-control" name="nama" id="exampleFormControlInput1">
+                        <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" id="exampleFormControlInput1">
+                        @error('nama')
+                          <div class="invalid-feedback">
+                            {{ $message }}
+                          </div>
+                        @enderror
                       </div>
                       <div class="mt-3 col-md-4">
                         <label for="exampleFormControlInput1" class="form-label">Jenis Kriteria</label>
