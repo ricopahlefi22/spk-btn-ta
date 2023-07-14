@@ -2,11 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\SuperAdminController;
+use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\NasabahController;
 use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\SubKriteriaController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PerhitunganController;
 use App\Http\Controllers\AuthController;
 
 /*
@@ -37,6 +38,7 @@ Route::group(['middleware'=>['auth']], function(){
 			Route::get('user-admin/create', [UserController::class,'CreateUserAdmin']);
 			Route::post('user-admin', [UserController::class, 'storeUserAdmin']);
 			Route::get('user-admin/edit/{user}', [UserController::class,'editUserAdmin']);
+			Route::put('user-admin/edit/{user}', [UserController::class,'UpdateUserAdmin']);
 
 			Route::get('profil', [UserController::class, 'Profil']);
 			Route::get('ganti-password/{user}', [UserController::class,'gantipasswordUserAdmin']);
@@ -48,6 +50,11 @@ Route::group(['middleware'=>['auth']], function(){
 
 			Route::get('nasabah', [NasabahController::class,'BerandaNasabah']);
 			Route::get('nasabah/create', [NasabahController::class,'CreateNasabah']);
+			Route::post('nasabah', [NasabahController::class,'simpan']);
+			Route::get('nasabah/edit/{nasabah}', [NasabahController::class, 'edit']);
+			Route::put('nasabah/edit/{nasabah}', [NasabahController::class, 'update']);
+			Route::get('nasabah/detail/{nasabah}', [NasabahController::class, 'detail']);
+			Route::delete('nasabah/{nasabah}', [NasabahController::class, 'destroy']);
 
 			Route::get('kriteria', [KriteriaController::class,'BerandaKriteria']);
 			Route::get('kriteria/create', [KriteriaController::class,'CreateKriteria']);
@@ -65,7 +72,8 @@ Route::group(['middleware'=>['auth']], function(){
 			Route::get('sub-kriteria/edit/{subkriteria}', [SubKriteriaController::class, 'edit']);
 			Route::put('sub-kriteria/edit/{subkriteria}', [SubKriteriaController::class, 'update']);
 			Route::delete('sub-kriteria/{subkriteria}', [SubkriteriaController::class, 'destroy']);
-			Route::get('perhitungan-sub-kriteria', [SubkriteriaController::class, 'perhitungan']);
+			Route::get('sub-kriteria/perhitungan/{kriteria}', [SubkriteriaController::class, 'berandaperhitungan']);
+			Route::post('sub-kriteria/perhitungan', [SubkriteriaController::class, 'perhitungan']);
 
 			Route::get('klasifikasi', [KlasifikasiController::class,'BerandaKlasifikasi']);
 			Route::get('klasifikasi/create', [KlasifikasiController::class,'createklasifikasi']);
@@ -78,21 +86,12 @@ Route::group(['middleware'=>['auth']], function(){
 
 Route::group(['middleware'=>['auth']], function(){
 	Route::group(['middleware'=>['CheckLogin:1']], function(){
-		Route::prefix('spk-btn')->group(function(){
-			Route::get('beranda', [AdminController::class, 'Beranda']);
+		Route::prefix('Karyawan')->group(function(){
+			Route::get('beranda', [KaryawanController::class, 'Beranda']);
 
-			Route::get('nasabah', [NasabahController::class,'BerandaNasabah']);
-			Route::get('nasabah/create', [NasabahController::class,'CreateNasabah']);
-
-			Route::get('kriteria', [KriteriaController::class,'BerandaKriteria']);
-			Route::get('kriteria/create', [KriteriaController::class,'CreateKriteria']);
-			Route::post('kriteria', [KriteriaController::class, 'store']);
-
-			Route::get('sub-kriteria', [SubKriteriaController::class,'BerandaSubKriteria']);
-			Route::get('sub-kriteria/create/{kriteria}', [SubKriteriaController::class,'createSubKriteria']);
-
-			Route::get('klasifikasi', [KlasifikasiController::class,'BerandaKlasifikasi']);
-			Route::get('klasifikasi/create', [KlasifikasiController::class,'createklasifikasi']);
+			Route::get('perhitungan', [PerhitunganController::class,'Beranda']);
+			Route::get('perhitungan/create', [PerhitunganController::class,'create']);
+			Route::post('perhitungan', [PerhitunganController::class,'simpan']);
 
 			Route::get('pendukungkeputusan', [PendukungKeputusanController::class,'Berandapendukungkeputusan']);
 			Route::get('pendukungkeputusan/create', [PendukungKeputusanController::class,'creatependukungkeputusan']);

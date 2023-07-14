@@ -26,9 +26,9 @@ class AuthController extends Controller
 		if (Auth::attempt($kredensil)){
 			$user = Auth::user();
 			if($user->level == '0'){
-				return redirect()->intended('Admin/beranda')->with('warning', 'Selamat Datang Admin');
+				return redirect()->intended('Admin/beranda')->with('warning', 'Selamat Datang Admin🌞');
 			} elseif($user->level == '1'){
-				return redirect()->intended('spk-btn/beranda')->with('warning', 'Selamat Datang Di SPK Pemberian KPR Bank BTN');
+				return redirect()->intended('Karyawan/beranda')->with('warning', 'Selamat Datang Di SPK Pemberian KPR Bank BTN');
 			}
 		}
 		return redirect('spk-btn/login')->with('danger', 'Silahkan Cek Username dan Password Anda');

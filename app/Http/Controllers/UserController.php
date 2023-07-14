@@ -45,6 +45,19 @@ class UserController extends Controller
         return view('Admin.User.edit-user-admin', $data);
     }
 
+    function UpdateUserAdmin(User $user){
+
+            $user->level= 0;
+            $user->nama= request('nama');
+            $user->username= request('username');
+            $user->email = request('email');
+            $user-> save();
+
+            return redirect('Admin/user-admin')->with('success', 'Edit Data Admin Berhasil');
+        
+
+    }
+
     function Profil(User $user){
         $data['admin'] = Auth::user();
 

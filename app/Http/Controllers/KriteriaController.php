@@ -40,9 +40,27 @@ class KriteriaController extends Controller
 			$kriteria-> kode = request('kode');
 			$kriteria-> nama = request('nama');
 			$kriteria-> jenis = request('jenis');
-
 			$kriteria-> save();
 
+			$perhitungankriteria = new PerhitunganKriteria;
+			$perhitungankriteria-> id_kriteria_1 = $kriteria->id;
+			$perhitungankriteria-> id_kriteria_2 = $kriteria->id;
+			$perhitungankriteria-> skala = 1;
+			$perhitungankriteria-> save();
+
+			foreach (Kriteria::where('id', '!=', $kriteria->id)->get() as $item) {
+				$perhitungankriteria = new PerhitunganKriteria;
+				$perhitungankriteria-> id_kriteria_1 = $kriteria->id;
+				$perhitungankriteria-> id_kriteria_2 = $item->id;
+				$perhitungankriteria-> skala = 1;
+				$perhitungankriteria-> save();
+
+				$perhitungankriteria = new PerhitunganKriteria;
+				$perhitungankriteria-> id_kriteria_1 = $item->id;
+				$perhitungankriteria-> id_kriteria_2 = $kriteria->id;
+				$perhitungankriteria-> skala = 1;
+				$perhitungankriteria-> save();
+			}
 
 			return redirect ('Admin/kriteria')->with('success', 'Data Kriteria berhasil ditambahkan');
 
@@ -72,6 +90,26 @@ class KriteriaController extends Controller
 			$subkriteria->delete();
 		}
 
+		$kriteria1 = PerhitunganKriteria::where('id_kriteria_1', $kriteria->id)->get();
+
+		if(!is_null($kriteria1)){
+		foreach(
+			$kriteria1 as $subkriteria
+		){
+			$subkriteria->delete();
+		}
+		}
+
+		$kriteria2 = PerhitunganKriteria::where('id_kriteria_2', $kriteria->id)->get();
+
+		if(!is_null($kriteria2)){
+		foreach(
+			$kriteria2 as $subkriteria
+		){
+			$subkriteria->delete();
+		}
+		}
+
 
 		$kriteria->delete();
 
@@ -79,7 +117,7 @@ class KriteriaController extends Controller
 
 	}
 
-	function berandaperhitungan(Kriteria $kriteria){
+	function berandaperhitungan(Request $request){
 		$data['list_kriteria'] = Kriteria::all();
 
 		return view('Admin.Kriteria.perhitungan', $data);
@@ -100,10 +138,24 @@ class KriteriaController extends Controller
 	}
 
 	function perhitungan(){
+		$check = PerhitunganKriteria::where('id_kriteria_1', request('id_kriteria_1'))->where('id_kriteria_2', request('id_kriteria_2'))->first();
+		if($check){
+			$check->delete();
+		}
 		$perhitungankriteria = new PerhitunganKriteria;
 		$perhitungankriteria-> id_kriteria_1 = request('id_kriteria_1');
 		$perhitungankriteria-> id_kriteria_2 = request('id_kriteria_2');
 		$perhitungankriteria-> skala = request('skala');
+		$perhitungankriteria-> save();
+
+		$check2 = PerhitunganKriteria::where('id_kriteria_1', request('id_kriteria_2'))->where('id_kriteria_2', request('id_kriteria_1'))->first();
+		if($check2){
+			$check2->delete();
+		}
+		$perhitungankriteria = new PerhitunganKriteria;
+		$perhitungankriteria-> id_kriteria_1 = request('id_kriteria_2');
+		$perhitungankriteria-> id_kriteria_2 = request('id_kriteria_1');
+		$perhitungankriteria-> skala = 1/request('skala');
 		$perhitungankriteria-> save();
 
 

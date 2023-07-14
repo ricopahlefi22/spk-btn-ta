@@ -53,12 +53,6 @@
                 <div data-i18n="Analytics">Data Subkriteria</div>
               </a>
             </li>
-            <li class="menu-item {{request()->is('Admin/perhitungan-sub-kriteria*') ? 'active' : ''}}">
-              <a href="{{url('Admin/perhitungan-sub-kriteria')}}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-receipt"></i>
-                <div data-i18n="Analytics">Perhitungan Subkriteria</div>
-              </a>
-            </li>
 
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Users</span></li>
 
