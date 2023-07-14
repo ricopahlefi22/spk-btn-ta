@@ -90,11 +90,12 @@ Route::group(['middleware'=>['auth']], function(){
 			Route::get('beranda', [KaryawanController::class, 'Beranda']);
 
 			Route::get('perhitungan', [PerhitunganController::class,'Beranda']);
-			Route::get('perhitungan/create', [PerhitunganController::class,'create']);
-			Route::post('perhitungan', [PerhitunganController::class,'simpan']);
+			Route::get('tambah-bobot/{perhitungan}', [PerhitunganController::class, 'tambahbobot']);
+			Route::post('tambah-bobot/{perhitungan}', [PerhitunganController::class, 'simpanbobot']);
+			Route::get('tambah-nasabah/create', [PerhitunganController::class,'create']);
+			Route::post('tambah-nasabah', [PerhitunganController::class,'simpan']);
 
-			Route::get('pendukungkeputusan', [PendukungKeputusanController::class,'Berandapendukungkeputusan']);
-			Route::get('pendukungkeputusan/create', [PendukungKeputusanController::class,'creatependukungkeputusan']);
+			Route::get('hasil-akhir', [PerhitunganController::class, 'Hasil']);
 		});
 	});
 });

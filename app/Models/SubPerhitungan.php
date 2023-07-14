@@ -10,4 +10,8 @@ class SubPerhitungan extends Model{
 		return $this->belongsTo(Perhitungan::class);
 	}
 
+	public function subkriteria(){
+		return $this->belongsTo(Subkriteria::class, 'id_subkriteria');
+	}
+
 }

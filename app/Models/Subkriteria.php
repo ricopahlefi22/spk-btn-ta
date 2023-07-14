@@ -18,4 +18,8 @@ class Subkriteria extends Model{
 		return $this->hasMany(PerhitunganSubriteria::class, 'id_subkriteria_2');
 	}
 
+	public function bobot(){
+		return $this->belongsTo(SubPerhitungan::class);
+	}
+
 }

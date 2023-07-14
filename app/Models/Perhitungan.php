@@ -6,16 +6,12 @@ class Perhitungan extends Model{
 	protected $table = 'perhitungan';
 	protected $guarded =['id'];
 
-	public function subkriteria(){
-		return $this->hasMany(Subkriteria::class, 'id_subkriteria');
-	}
-
-	public function subperhitungan(){
+	public function bobot(){
 		return $this->hasMany(SubPerhitungan::class, 'id_perhitungan');
 	}
 
 	public function nasabah(){
-		return $this->belongsTo(Nasabah::class);
+		return $this->belongsTo(Nasabah::class, 'id_nasabah');
 	}
 
 }

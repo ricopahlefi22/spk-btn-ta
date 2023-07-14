@@ -10,7 +10,7 @@ class Nasabah extends Model{
 	protected $guarded =['id'];
 
 	public function perhitungan(){
-		return $this->hasMany(Perhitungan::class, 'id_nasabah');
+		return $this->belongsTo(Perhitungan::class);
 	}
 
 	function handleUploadKTPpemohon(){

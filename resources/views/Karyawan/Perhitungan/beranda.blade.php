@@ -9,8 +9,8 @@
                 <h5 class="card-header">Data Perhitungan</h5>
                 <div class="container">
                 <div class="row">
-                    <a href="{{url('Karyawan/perhitungan/create')}}">
-                      <div class="btn btn-dark" style="float: right; margin-right: 10px; margin-bottom: 10px"><i class="bx bx-plus"></i> Tambah Data Alternatif</div>
+                    <a href="{{url('Karyawan/tambah-nasabah/create')}}">
+                      <div class="btn btn-dark" style="float: right; margin-right: 10px; margin-bottom: 10px"><i class="bx bx-plus"></i> Tambah Data Nasabah</div>
                     </a>
                   </div>
                 <div class="table-responsive text-nowrap">
@@ -19,34 +19,26 @@
                       <tr>
                         <th>No</th>
                         <th>Nama Alternatif</th>
+                        <th>Aksi</th>
                         @foreach($list_kriteria as $kriteria)
                         <th>{{$kriteria->nama}}</th>
                         @endforeach
-                        <th>Actions</th>
                       </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
                       @foreach($list_perhitungan as $perhitungan)
                       <tr>
-                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{$perhitungan->id_nasabah}}</strong></td>
-                        <td> kjdf </td>
+                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{$loop->iteration}}</strong></td>
+                        <td> {{$perhitungan->nasabah->nama}} </td>
+                        <td><a href="{{url('Karyawan/tambah-bobot', $perhitungan->id)}}" class="btn btn-warning"><i class="bx bx-plus"></i> Bobot</a></td>
 
-                        <td> afj</td>
+                        @php
+                          $list_bobot = App\Models\SubPerhitungan::where('id_perhitungan', $perhitungan->id)->get()
+                        @endphp
 
-                        <td>
-                          <div class="row">
-                            <div class="btn-group">
-                              <a href="{{url('Karyawan/perhitungan/edit', $perhitungan->id)}}">
-                                <button class="btn btn-primary" style="margin-right: 5px"><i class="bx bx-edit-alt"></i></button>
-                              </a>
-                              <form action="{{url('Karyawan/perhitungan', $perhitungan->id)}}" method="post" class="form-inline" onsubmit="return confirm('Yakin Akan Menghapus Data Ini?')">
-                                @csrf
-                                @method("delete")
-                                <button class="btn btn-danger"><i class="bx bx-trash"></i></button>
-                              </form>
-                            </div>
-                          </div>
-                        </td>
+                        @foreach($list_bobot as $bobot)
+                        <td>{{$bobot->subkriteria->nama}}</td>
+                        @endforeach
                       </tr>
                       @endforeach
                     </tbody>
