@@ -32,7 +32,7 @@
                             <option hidden>Pilih Jenis Prioritas</option>
                             <option value="1">- Sama Pentingnya</option>
                             <option value="3">- Agak Penting</option>
-                            <option value="5">- Cukup Penting Penting</option>
+                            <option value="5">- Cukup Penting</option>
                             <option value="7">- Lebih Penting</option>
                             <option value="9">- Sangat Penting</option>
                           </select>

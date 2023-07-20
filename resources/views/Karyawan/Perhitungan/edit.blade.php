@@ -1,7 +1,7 @@
 @extends('Karyawan.template.base')
 @section('content')
 
-<h4 class="fw-bold py-3 mb-4">Perhitungan</h4>
+<h4 class="fw-bold py-3 mb-4">Penilaian Nasabah</h4>
 
           <div class="row">
             <div class="col-12 col-lg-12 d-flex">
@@ -11,29 +11,26 @@
                 </div>
                 <form action="{{url('Karyawan/tambah-bobot', $perhitungan->id)}}" method="post" enctype="multipart/form-data" style="margin-left: 20px; margin-right: 20px; margin-bottom: 20px">
                   @csrf
+                  @method("PUT")
                   <div class="container">
                     <div class="row">
                       <div class="mt-3 col-md-6">
                         <label for="exampleFormControlInput1" class="form-label">Nasabah</label>
                         <input type="text" class="form-control" value="{{$perhitungan->nasabah->nama}}" readonly>
-                        <div class="row">
-                          <div class="col-md-5 mt-3">
-                            <div class="row">
-                              @foreach($list_kriteria as $kriteria)
-                              <p>{{$kriteria->nama}}</p>
-                              @endforeach
-                            </div>
-                          </div>
-                          <div class="col-md-7 mt-3">
-                            <div class="row">
+                        <div class="row mt-2">
+                          <div class="table-basic text-nowrap">
+                            <table class="table">
                               @php
                                 $list_bobot = App\Models\SubPerhitungan::where('id_perhitungan', $perhitungan->id)->get();
                               @endphp
-
                               @foreach($list_bobot as $bobot)
-                              <p>: {{$bobot->subkriteria->nama}}</p>
+                              <tr>
+                                <td>{{$bobot->subkriteria->kriteria->nama}}</td>
+                                <td>:</td>
+                                <td>{{$bobot->subkriteria->nama}}</td>
+                              </tr>
                               @endforeach
-                            </div>
+                            </table>
                           </div>
                         </div>
                       </div>

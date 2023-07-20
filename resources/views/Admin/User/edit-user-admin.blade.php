@@ -52,6 +52,15 @@
                         />
                         <span class="input-group-text" id="basic-addon33">@example.com</span>
                       </div>
+                      <div class="input-group input-group-merge">
+                        <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-image-add"></i></span>
+                        <input
+                          type="file"
+                          class="form-control"
+                          aria-describedby="basic-addon33"
+                          name="foto"
+                        />
+                      </div>
                       <!-- <div class="form-password-toggle">
                         <label class="form-label" for="basic-default-password32">Password</label>
                         <div class="input-group input-group-merge">

@@ -21,7 +21,7 @@ class Nasabah extends Model{
 			$randomStr = Str::random(5);
 			$filename = $this->id."-".time()."-".$randomStr.".".$ktp_pemohon->extension();
 			$url = $ktp_pemohon->storeAs($destination, $filename);
-			$this->ktp_pemohon = "app/".$url;
+			$this->ktp_pemohon = $url;
 			$this->save;
 		}
 	}
@@ -34,7 +34,7 @@ class Nasabah extends Model{
 			$randomStr = Str::random(5);
 			$filename = $this->id."-".time()."-".$randomStr.".".$ktp_suami_istri->extension();
 			$url = $ktp_suami_istri->storeAs($destination, $filename);
-			$this->ktp_suami_istri = "app/".$url;
+			$this->ktp_suami_istri = $url;
 			$this->save;
 		}
 	}
@@ -47,7 +47,7 @@ class Nasabah extends Model{
 			$randomStr = Str::random(5);
 			$filename = $this->id."-".time()."-".$randomStr.".".$kk->extension();
 			$url = $kk->storeAs($destination, $filename);
-			$this->kk = "app/".$url;
+			$this->kk = $url;
 			$this->save;
 		}
 	}
@@ -60,33 +60,33 @@ class Nasabah extends Model{
 			$randomStr = Str::random(5);
 			$filename = $this->id."-".time()."-".$randomStr.".".$surat_nikah->extension();
 			$url = $surat_nikah->storeAs($destination, $filename);
-			$this->surat_nikah = "app/".$url;
+			$this->surat_nikah = $url;
 			$this->save;
 		}
 	}
 
 	function handleUploadNPWP(){
 
-		if(request()->hasFile('npwp')){
-			$npwp = request()->file('npwp');
+		if(request()->hasFile('npwp_spt')){
+			$npwp = request()->file('npwp_spt');
 			$destination = "file/npwp";
 			$randomStr = Str::random(5);
 			$filename = $this->id."-".time()."-".$randomStr.".".$npwp->extension();
 			$url = $npwp->storeAs($destination, $filename);
-			$this->npwp = "app/".$url;
+			$this->npwp_spt = $url;
 			$this->save;
 		}
 	}
 
 	function handleUploadSKPegawai(){
 
-		if(request()->hasFile('skp_pegawai')){
-			$skp_pegawai = request()->file('skp_pegawai');
+		if(request()->hasFile('sk_pegawai_tetap')){
+			$skp_pegawai = request()->file('sk_pegawai_tetap');
 			$destination = "file/sk-pegawai";
 			$randomStr = Str::random(5);
 			$filename = $this->id."-".time()."-".$randomStr.".".$skp_pegawai->extension();
 			$url = $skp_pegawai->storeAs($destination, $filename);
-			$this->skp_pegawai = "app/".$url;
+			$this->sk_pegawai_tetap = $url;
 			$this->save;
 		}
 	}
@@ -99,7 +99,7 @@ class Nasabah extends Model{
 			$randomStr = Str::random(5);
 			$filename = $this->id."-".time()."-".$randomStr.".".$slip_gaji->extension();
 			$url = $slip_gaji->storeAs($destination, $filename);
-			$this->slip_gaji = "app/".$url;
+			$this->slip_gaji = $url;
 			$this->save;
 		}
 	}
@@ -112,7 +112,7 @@ class Nasabah extends Model{
 			$randomStr = Str::random(5);
 			$filename = $this->id."-".time()."-".$randomStr.".".$siup->extension();
 			$url = $siup->storeAs($destination, $filename);
-			$this->siup = "app/".$url;
+			$this->siup = $url;
 			$this->save;
 		}
 	}
@@ -125,7 +125,7 @@ class Nasabah extends Model{
 			$randomStr = Str::random(5);
 			$filename = $this->id."-".time()."-".$randomStr.".".$tdp->extension();
 			$url = $tdp->storeAs($destination, $filename);
-			$this->tdp = "app/".$url;
+			$this->tdp = $url;
 			$this->save;
 		}
 	}
@@ -138,33 +138,33 @@ class Nasabah extends Model{
 			$randomStr = Str::random(5);
 			$filename = $this->id."-".time()."-".$randomStr.".".$akta_pendirian->extension();
 			$url = $akta_pendirian->storeAs($destination, $filename);
-			$this->akta_pendirian = "app/".$url;
+			$this->akta_pendirian = $url;
 			$this->save;
 		}
 	}
 
 	function handleUploadAktaPengesahan(){
 
-		if(request()->hasFile('akta_pengesahan')){
-			$akta_pengesahan = request()->file('akta_pengesahan');
+		if(request()->hasFile('akta_pengesahan_menteri')){
+			$akta_pengesahan = request()->file('akta_pengesahan_menteri');
 			$destination = "file/akta-pengesahan";
 			$randomStr = Str::random(5);
 			$filename = $this->id."-".time()."-".$randomStr.".".$akta_pengesahan->extension();
 			$url = $akta_pengesahan->storeAs($destination, $filename);
-			$this->akta_pengesahan = "app/".$url;
+			$this->akta_pengesahan_menteri = $url;
 			$this->save;
 		}
 	}
 
 	function handleUploadDataKeuangan(){
 
-		if(request()->hasFile('data_keuangan')){
-			$data_keuangan = request()->file('data_keuangan');
+		if(request()->hasFile('data_keuangan_perusahaan')){
+			$data_keuangan = request()->file('data_keuangan_perusahaan');
 			$destination = "file/data-keuangan";
 			$randomStr = Str::random(5);
 			$filename = $this->id."-".time()."-".$randomStr.".".$data_keuangan->extension();
 			$url = $data_keuangan->storeAs($destination, $filename);
-			$this->data_keuangan = "app/".$url;
+			$this->data_keuangan_perusahaan = $url;
 			$this->save;
 		}
 	}
@@ -177,7 +177,7 @@ class Nasabah extends Model{
 			$randomStr = Str::random(5);
 			$filename = $this->id."-".time()."-".$randomStr.".".$izin_praktek->extension();
 			$url = $izin_praktek->storeAs($destination, $filename);
-			$this->izin_praktek = "app/".$url;
+			$this->izin_praktek = $url;
 			$this->save;
 		}
 	}
@@ -190,7 +190,7 @@ class Nasabah extends Model{
 			$randomStr = Str::random(5);
 			$filename = $this->id."-".time()."-".$randomStr.".".$rekening_koran->extension();
 			$url = $rekening_koran->storeAs($destination, $filename);
-			$this->rekening_koran = "app/".$url;
+			$this->rekening_koran = $url;
 			$this->save;
 		}
 	}
@@ -203,7 +203,7 @@ class Nasabah extends Model{
 			$randomStr = Str::random(5);
 			$filename = $this->id."-".time()."-".$randomStr.".".$pas_foto->extension();
 			$url = $pas_foto->storeAs($destination, $filename);
-			$this->pas_foto = "app/".$url;
+			$this->pas_foto = $url;
 			$this->save;
 		}
 	}

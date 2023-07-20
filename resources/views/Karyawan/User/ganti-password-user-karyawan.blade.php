@@ -1,15 +1,15 @@
-@extends('Admin.template.base')
+@extends('Karyawan.template.base')
 @section('content')
 
-<h4 class="fw-bold py-3 mb-4">User Admin</h4>
+<h4 class="fw-bold py-3 mb-4">User Karyawan</h4>
 
               <div class="row">
 
                 <!-- Merged -->
                 <div class="col-md-12">
                   <div class="card mb-4">
-                    <h5 class="card-header">Ganti Password <b>{{$admin->nama}}</b></h5>
-                    <form action="{{url('Admin/ganti-password')}}" method="post" enctype="multipart/form-data">
+                    <h5 class="card-header">Ganti Password <b>{{$karyawan->nama}}</b></h5>
+                    <form action="{{url('Karyawan/ganti-password')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body demo-vertical-spacing demo-only-element">
                       <div class="form-password-toggle">

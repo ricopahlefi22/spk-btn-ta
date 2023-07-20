@@ -1,12 +1,12 @@
 @extends('Karyawan.template.base')
 @section('content')
 
-<h4 class="fw-bold py-3 mb-4">Perhitungan</h4>
+<h4 class="fw-bold py-3 mb-4">Penilaian Nasabah</h4>
 
 
               <!-- Hoverable Table rows -->
               <div class="card">
-                <h5 class="card-header">Data Perhitungan</h5>
+                <h5 class="card-header">Data Penilaian</h5>
                 <div class="container">
                   <div class="table-responsive text-nowrap">
                     <table class="table table-bordered">

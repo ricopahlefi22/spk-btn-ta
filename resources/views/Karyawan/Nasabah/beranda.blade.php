@@ -1,4 +1,4 @@
-@extends('Admin.template.base')
+@extends('Karyawan.template.base')
 @section('content')
 
 <h4 class="fw-bold py-3 mb-4">Nasabah Pemohon</h4>
@@ -8,7 +8,7 @@
               <div class="card">
                   <h5 class="card-header">Data Nasabah Pemohon</h5>
                 <div class="row">
-                    <a href="{{url('Admin/nasabah/create')}}">
+                    <a href="{{url('Karyawan/nasabah/create')}}">
                       <div class="btn btn-dark" style="float: right; margin-right: 10px; margin-bottom: 10px"><i class="bx bx-plus"></i> Tambah Nasabah</div>
                     </a>
                   </div>
@@ -33,13 +33,13 @@
                         <td>
                             <div class="row">
                               <div class="btn-group">
-                                <a href="{{url('Admin/nasabah/detail', $nasabah->id)}}">
+                                <a href="{{url('Karyawan/nasabah/detail', $nasabah->id)}}">
                                   <button class="btn btn-info" style="margin-right: 5px"><i class="bx bx-info-circle"></i></button>
                                 </a>
-                                <a href="{{url('Admin/nasabah/edit', $nasabah->id)}}">
+                                <a href="{{url('Karyawan/nasabah/edit', $nasabah->id)}}">
                                   <button class="btn btn-warning" style="margin-right: 5px"><i class="bx bx-edit-alt"></i></button>
                                 </a>
-                                <form action="{{url('Admin/nasabah', $nasabah->id)}}" method="post" class="form-inline" onsubmit="return confirm('Yakin Akan Menghapus Data Ini?')">
+                                <form action="{{url('Karyawan/nasabah', $nasabah->id)}}" method="post" class="form-inline" onsubmit="return confirm('Yakin Akan Menghapus Data Ini?')">
                                   @csrf
                                   @method("delete")
                                   <button class="btn btn-danger"><i class="bx bx-trash"></i></button>

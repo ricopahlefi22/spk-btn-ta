@@ -2,22 +2,34 @@
 
 namespace App\Http\Controllers;
 use App\Models\Nasabah;
+use Illuminate\Http\Request;
 
 
 class NasabahController extends Controller
 {
 	function BerandaNasabah(){
 		$data['list_nasabah'] = Nasabah::all();
-		return view('Admin.Nasabah.beranda', $data);
+		return view('Karyawan.Nasabah.beranda', $data);
 	}
 
 	function CreateNasabah(){
-		return view('Admin.Nasabah.create');
+		return view('Karyawan.Nasabah.create');
 	}
 
-	function simpan(){
+	function simpan(Request $request){
+		$request->validate(
+            [
+                'nik' => ($request->id) ? 'required' : 'required|unique:nasabah',
+            ],
+            [
+            	'nik.required'=>'Harap isi bidang ini',
+            	'nik.unique'=>'NIK sudah tersedia',
+            ]
+        );
+
 		$nasabah = new Nasabah;
 		$nasabah->nama = request('nama');
+		$nasabah->nik = request('nik');
 		$nasabah->ttl = request('ttl');
 		$nasabah->jenis_kelamin = request('jenis_kelamin');
 		$nasabah->alamat = request('alamat');
@@ -39,16 +51,17 @@ class NasabahController extends Controller
 
 		$nasabah->save();
 
-		return redirect('Admin/nasabah')->with('success', 'Data Nasabah Berhasil Ditambahkan');
+		return redirect('Karyawan/nasabah')->with('success', 'Data Nasabah Berhasil Ditambahkan');
 	}
 
 	function edit(Nasabah $nasabah){
 		$data['nasabah'] = $nasabah;
-		return view('Admin.Nasabah.edit', $data);
+		return view('Karyawan.Nasabah.edit', $data);
 	}
 
-	function update(Nasabah $nasabah){
+	function update(Nasabah $nasabah, Request $request){
 		$nasabah->nama = request('nama');
+		$nasabah->nik = request('nik');
 		$nasabah->ttl = request('ttl');
 		$nasabah->jenis_kelamin = request('jenis_kelamin');
 		$nasabah->alamat = request('alamat');
@@ -68,21 +81,21 @@ class NasabahController extends Controller
 		$nasabah->handleUploadRekeningKoran();
 		$nasabah->handleUploadPasFoto();
 
-		$nasabah->save();
+		$nasabah->update();
 
-		return redirect('Admin/nasabah')->with('success', 'Data Nasabah Berhasil Diedit');
+		return redirect('Karyawan/nasabah')->with('success', 'Data Nasabah Berhasil Diedit');
 	}
 
 	function detail(Nasabah $nasabah){
 		$data['nasabah'] = $nasabah;
-		return view('Admin.Nasabah.detail', $data);
+		return view('Karyawan.Nasabah.detail', $data);
 	}
 
 	function destroy(Nasabah $nasabah){
 		$nasabah->handleDeleteFile();
 		$nasabah->delete();
 
-		return redirect ('Admin/nasabah')-> with ('danger', 'Data Nasabah Berhasil Dihapus');
+		return redirect ('Karyawan/nasabah')-> with ('danger', 'Data Nasabah Berhasil Dihapus');
 
 	}
 }

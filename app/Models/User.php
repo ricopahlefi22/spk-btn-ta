@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 
 class User extends Authenticatable
 {
@@ -20,7 +22,7 @@ class User extends Authenticatable
             $randomStr = Str::random(5);
             $filename = $this->id."-".time()."-".$randomStr.".".$foto->extension();
             $url = $foto->storeAs($destination, $filename);
-            $this->foto = "app/".$url;
+            $this->foto = $url;
             $this->save;
         }
     }

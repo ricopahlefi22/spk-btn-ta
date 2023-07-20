@@ -51,9 +51,30 @@ class UserController extends Controller
             $user->nama= request('nama');
             $user->username= request('username');
             $user->email = request('email');
+            $user->handleUploadFoto();
             $user-> save();
 
             return redirect('Admin/user-admin')->with('success', 'Edit Data Admin Berhasil');
+        
+
+    }
+
+    function EditKaryawan(User $user){
+        $data['karyawan'] = $user;
+
+        return view('Admin.User.edit-user-karyawan', $data);
+    }
+
+    function UpdateKaryawan(User $user){
+
+            $user->level= 1;
+            $user->nama= request('nama');
+            $user->username= request('username');
+            $user->email = request('email');
+            $user->handleUploadFoto();
+            $user-> save();
+
+            return redirect('Admin/user-karyawan')->with('success', 'Edit Data Karyawan Berhasil');
         
 
     }
@@ -69,6 +90,39 @@ class UserController extends Controller
 
         return view('Admin.User.ganti-password-user-admin', $data);
     }
+
+    function editUserKaryawan(User $user){
+        $data['karyawan'] = $user;
+
+        return view('Karyawan.User.edit-user-karyawan', $data);
+    }
+
+    function UpdateUserKaryawan(User $user){
+
+            $user->level= 1;
+            $user->nama= request('nama');
+            $user->username= request('username');
+            $user->email = request('email');
+            $user->handleUploadFoto();
+            $user-> save();
+
+            return redirect('Karyawan/profil')->with('success', 'Edit Data Karyawan Berhasil');
+        
+
+    }
+
+    function ProfilKaryawan(User $user){
+        $data['karyawan'] = Auth::user();
+
+        return view('Karyawan.User.profil', $data);
+    }
+
+    function gantipasswordUserKaryawan(User $user){
+        $data['karyawan'] = Auth::user();
+
+        return view('Karyawan.User.ganti-password-user-karyawan', $data);
+    }
+
 
     public function simpanpassword(Request $request){
         $request->validate([
@@ -129,5 +183,17 @@ class UserController extends Controller
             return redirect('Admin/user-karyawan')->with('success', 'Pendaftaran Berhasil');
         
 
+    }
+
+    function deleteAdmin(User $user){
+        $user->delete();
+
+        return redirect()->back()->with('danger', 'Data Admin Telah Dihapus');
+    }
+
+    function deleteKaryawan(User $user){
+        $user->delete();
+
+        return redirect()->back()->with('danger', 'Data Karyawan Telah Dihapus');
     }
 }

@@ -1,4 +1,4 @@
-@extends('Admin.template.base')
+@extends('Karyawan.template.base')
 @section('content')
 
 <h4 class="fw-bold py-3 mb-4">Profil Anda</h4>
@@ -10,14 +10,18 @@
                   <div class="row">
                     <div class="avatar">
                       <div class="card w-px-250 h-px-250">
+                        @if(!empty($karyawan->foto))
+                        <img src="{{asset('storage/'.$karyawan->foto)}}" alt class="w-px-200 h-auto rounded-circle m-auto img-fluid" />
+                        @else
                         <img src="{{asset('Admin/assets/img/avatars/1.png')}}" alt class="w-px-200 h-auto rounded-circle m-auto" />
+                        @endif
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="card mb-4">
-                    <h5 class="card-header"><b>{{$admin->nama}}</b></h5>
+                    <h5 class="card-header"><b>{{$karyawan->nama}}</b></h5>
                     <div class="card-body demo-vertical-spacing demo-only-element">
 
                       <div class="input-group input-group-merge">
@@ -29,7 +33,7 @@
                           aria-label="Masukkan Username"
                           aria-describedby="basic-addon-search31"
                           name="username"
-                          value="{{$admin->username}}"
+                          value="{{$karyawan->username}}"
                           readonly
                           style="background-color: #fff"
                         />
@@ -44,7 +48,7 @@
                           aria-label="Masukkan Email"
                           aria-describedby="basic-addon33"
                           name="email"
-                          value="{{$admin->email}}"
+                          value="{{$karyawan->email}}"
                           readonly
                           style="background-color: #fff;"
                         />
@@ -65,8 +69,8 @@
                           ></span>
                         </div>
                       </div> -->
-                      <a href="{{url('Admin/user-admin/edit', $admin->id)}}" class="btn btn-primary">Edit Profil</a>
-                      <a href="{{url('Admin/ganti-password', $admin->id)}}" class="btn btn-secondary">Ganti Password ?</a>
+                      <a href="{{url('Karyawan/user-karyawan/edit', $karyawan->id)}}" class="btn btn-primary">Edit Profil</a>
+                      <a href="{{url('Karyawan/ganti-password', $karyawan->id)}}" class="btn btn-secondary">Ganti Password ?</a>
                     </div>
                   </div>
                 </div>

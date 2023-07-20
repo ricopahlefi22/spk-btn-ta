@@ -1,15 +1,15 @@
 @extends('Admin.template.base')
 @section('content')
 
-<h4 class="fw-bold py-3 mb-4">User Admin</h4>
+<h4 class="fw-bold py-3 mb-4">User Karyawan</h4>
 
               <div class="row">
 
                 <!-- Merged -->
                 <div class="col-md-12">
                   <div class="card mb-4">
-                    <h5 class="card-header">Edit Data <b>{{$admin->nama}}</b></h5>
-                    <form action="{{url('Admin/user-admin/edit', $admin->id)}}" method="post" enctype="multipart/form-data">
+                    <h5 class="card-header">Edit Data <b>{{$karyawan->nama}}</b></h5>
+                    <form action="{{url('Admin/user-karyawan/edit', $karyawan->id)}}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method("PUT")
                     <div class="card-body demo-vertical-spacing demo-only-element">
@@ -22,7 +22,7 @@
                           aria-label="Masukkan Nama"
                           aria-describedby="basic-addon-search31"
                           name="nama"
-                          value="{{$admin->nama}}"
+                          value="{{$karyawan->nama}}"
                         />
                       </div>
 
@@ -35,7 +35,7 @@
                           aria-label="Masukkan Username"
                           aria-describedby="basic-addon-search31"
                           name="username"
-                          value="{{$admin->username}}"
+                          value="{{$karyawan->username}}"
                         />
                       </div>
 
@@ -48,9 +48,18 @@
                           aria-label="Masukkan Email"
                           aria-describedby="basic-addon33"
                           name="email"
-                          value="{{$admin->email}}"
+                          value="{{$karyawan->email}}"
                         />
                         <span class="input-group-text" id="basic-addon33">@example.com</span>
+                      </div>
+                      <div class="input-group input-group-merge">
+                        <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-image-add"></i></span>
+                        <input
+                          type="file"
+                          class="form-control"
+                          aria-describedby="basic-addon33"
+                          name="foto"
+                        />
                       </div>
                       <!-- <div class="form-password-toggle">
                         <label class="form-label" for="basic-default-password32">Password</label>

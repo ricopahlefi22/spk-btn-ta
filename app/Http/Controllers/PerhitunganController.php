@@ -35,7 +35,7 @@ class PerhitunganController extends Controller
                 'id_nasabah' => ($request->id) ? 'required' : 'required|unique:perhitungan',
             ],
             [
-            	'id_nasabah.unique'=>'Nasabah sudah tersedia',
+            	'id_nasabah.unique'=>'Nasabah ini sudah diproses',
             ]
         );
 
@@ -43,21 +43,48 @@ class PerhitunganController extends Controller
 		$perhitungan->id_nasabah = request('id_nasabah');
 		$perhitungan->save();
 
-		return redirect('Karyawan/perhitungan')->with('success', 'Data Berhasil Ditambahkan');
+		return redirect('Karyawan/perhitungan')->with('success', 'Data Penilaian Berhasil Ditambahkan');
 	}
 
-	function simpanbobot(){
-		$subperhitungan = new SubPerhitungan;
-		$subperhitungan->id_perhitungan = request('id_perhitungan');
-		$subperhitungan->id_subkriteria = request('id_subkriteria');
-		$subperhitungan->save();
+	function simpanbobot(SubPerhitungan $subperhitungan){
+		
+			$subperhitungan = new SubPerhitungan;
+			$subperhitungan->id_perhitungan = request('id_perhitungan');
+			$subperhitungan->id_subkriteria = request('id_subkriteria');
+			$subperhitungan->save();
 
-		return redirect()->back()->with('success', 'Data berhasil ditambah');
+		return redirect()->back()->with('success', 'Data bobot berhasil ditambah');
+	}
+
+	function editbobot(SubPerhitungan $subperhitungan){
+		$subperhitungan->id = $subperhitungan->id;
+		$subperhitungan->id_perhitungan = $subperhitungan->id_perhitungan;
+		$subperhitungan->id_subkriteria = request('id_subkriteria');
+		$subperhitungan->update();
+
+		return redirect()->back()->with('success', 'Data berhasil diedit');
 	}
 
 	function Hasil(){
 		$data['list_perhitungan'] = Perhitungan::all();
 		$data['list_kriteria'] = Kriteria::all();
 		return view('Karyawan.Perhitungan.info', $data);
+	}
+
+	function hapus(Perhitungan $perhitungan){
+		$subperhitungan = SubPerhitungan::where('id_perhitungan', $perhitungan->id)->get();
+
+		if(!is_null($subperhitungan)){
+		foreach(
+			$subperhitungan as $subp
+		){
+			$subp->delete();
+		}
+		}
+
+
+		$perhitungan->delete();
+
+		return redirect ('Karyawan/perhitungan')-> with ('danger', 'Data Penilaian berhasil dihapus');
 	}
 }

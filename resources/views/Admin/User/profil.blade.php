@@ -10,7 +10,11 @@
                   <div class="row">
                     <div class="avatar">
                       <div class="card w-px-250 h-px-250">
-                        <img src="{{asset('Admin/assets/img/avatars/1.png')}}" alt class="w-px-200 h-auto rounded-circle m-auto" />
+                        @if(!empty($admin->foto))
+                          <img src="{{asset('storage/'.$admin->foto)}}" alt class="w-px-200 h-auto rounded-circle m-auto img-fluid" />
+                        @else
+                          <img src="{{asset('Admin/assets/img/avatars/1.png')}}" alt class="w-px-40 h-auto rounded-circle" />
+                        @endif
                       </div>
                     </div>
                   </div>

@@ -21,17 +21,24 @@
               </a>
             </li>
 
-            <li class="menu-header small text-uppercase"><span class="menu-header-text">Kriteria</span></li>
+            <li class="menu-item {{request()->is('Karyawan/nasabah*') ? 'active' : ''}}">
+              <a href="{{url('Karyawan/nasabah')}}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-face"></i>
+                <div data-i18n="Analytics">Nasabah Pemohon</div>
+              </a>
+            </li>
+
+            <li class="menu-header small text-uppercase"><span class="menu-header-text">Penilaian</span></li>
             <li class="menu-item {{request()->is('Karyawan/perhitungan*') ? 'active' : ''}}">
               <a href="{{url('Karyawan/perhitungan')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-receipt"></i>
-                <div data-i18n="Analytics">Input Data Perhitungan</div>
+                <div data-i18n="Analytics">Input Data Penilaian</div>
               </a>
             </li>
             <li class="menu-item {{request()->is('Karyawan/hasil-akhir*') ? 'active' : ''}}">
               <a href="{{url('Karyawan/hasil-akhir')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-receipt"></i>
-                <div data-i18n="Analytics">Hasil Akhir Perhitungan</div>
+                <div data-i18n="Analytics">Hasil Akhir Penilaian</div>
               </a>
             </li>
 

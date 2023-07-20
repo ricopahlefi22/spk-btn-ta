@@ -27,17 +27,16 @@
                         <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{$karyawan->nama}}</strong></td>
                         <td>{{$karyawan->username}}</td>
                         <td>
-                          <div class="dropdown">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                              <i class="bx bx-dots-vertical-rounded"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                              <a class="dropdown-item" href="javascript:void(0);"
-                                ><i class="bx bx-edit-alt me-1"></i> Edit</a
-                              >
-                              <a class="dropdown-item" href="javascript:void(0);"
-                                ><i class="bx bx-trash me-1"></i> Delete</a
-                              >
+                          <div class="row">
+                            <div class="btn-group">
+                              <a href="{{url('Admin/user-karyawan/edit', $karyawan->id)}}">
+                                <button class="btn btn-primary" style="margin-right: 5px"><i class="bx bx-edit-alt"></i></button>
+                              </a>
+                              <form action="{{url('Admin/user-karyawan', $karyawan->id)}}" method="post" class="form-inline" onsubmit="return confirm('Yakin Akan Menghapus Data Ini?')">
+                                @csrf
+                                @method("delete")
+                                <button class="btn btn-danger"><i class="bx bx-trash"></i></button>
+                              </form>
                             </div>
                           </div>
                         </td>

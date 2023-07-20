@@ -25,13 +25,6 @@
               </a>
             </li>
 
-            <li class="menu-item {{request()->is('Admin/nasabah*') ? 'active' : ''}}">
-              <a href="{{url('Admin/nasabah')}}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-face"></i>
-                <div data-i18n="Analytics">Nasabah Pemohon</div>
-              </a>
-            </li>
-
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Kriteria</span></li>
             <li class="menu-item {{request()->is('Admin/kriteria*') ? 'active' : ''}}">
               <a href="{{url('Admin/kriteria')}}" class="menu-link">
